@@ -39,7 +39,7 @@ def _find_nc_file(variable: str) -> str:
     data_path = settings.data_path
     # Priority: exact match → partial match → any .nc file
     for pattern in [f"*{variable}*", "*.nc"]:
-        files = list(data_path.glob(pattern))
+        files = list(data_path.rglob(pattern))
         if files:
             return str(files[0])
     raise HTTPException(

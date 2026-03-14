@@ -60,10 +60,16 @@ def load_dataset(filepath: str) -> xr.Dataset:
             rename_map[dim] = "lat"
         elif dim.lower() in ("longitude", "lon"):
             rename_map[dim] = "lon"
-        elif dim.lower() in ("time", "t"):
+        elif dim.lower() in ("time", "t", "valid_time"):
             rename_map[dim] = "time"
     if rename_map:
         ds = ds.rename(rename_map)
+
+    # Convert longitude from 0..360 to -180..180 if needed
+    if "lon" in ds.coords and float(ds.coords["lon"].max()) > 180:
+        ds.coords["lon"] = (ds.coords["lon"] + 180) % 360 - 180
+        ds = ds.sortby(ds.lon)
+
     return ds
 
 
