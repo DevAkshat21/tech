@@ -1,0 +1,26 @@
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+pydantic==2.7.1
+pydantic-settings==2.3.1
+python-dotenv==1.0.1
+python-multipart==0.0.9
+
+# Climate data processing
+xarray==2024.5.0
+netCDF4==1.6.5
+numpy==1.26.4
+pandas==2.2.2
+scipy==1.13.1
+
+# Forecasting
+prophet==1.1.5
+
+# Supabase
+supabase==2.5.0
+
+# LLM
+anthropic==0.28.0
+openai==1.35.0
+
+# Caching / async
+anyio==4.4.0
